@@ -38,3 +38,11 @@ class CommandTests(unittest.TestCase):
         for data in ("", "09:00:00\n"):
             with self.subTest(data=data):
                 self.assert_command(data)
+    def test_malformed_clock(self):
+        for clock in ("", "1:02:03", "12:00:00 ", "１２:００:００", "12-00-00", "ab:cd:ef"):
+            with self.subTest(clock=clock):
+                self.assert_command(
+                    clock + "\n",
+                    error="1行目: 時刻はHH:MM:SS形式で入力してください\n",
+                    status=1,
+                )

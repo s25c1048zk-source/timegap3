@@ -26,7 +26,7 @@ $ printf '12:00:00\n12:00:03\n12:00:10\n12:01:00\n' | ./timegap
 時刻を1行ずつ書いたファイルからも読み込めます。
 
 ```bash
-./timegap < times.txt
+$./timegap < times.txt
 ```
 
 ## 入力条件
@@ -44,7 +44,7 @@ $ printf '12:00:00\n12:00:03\n12:00:10\n12:01:00\n' | ./timegap
 ## テスト方法
 
 ```bash
-bash test_timegap.bash
+$bash test_timegap.bash
 ```
 
 すべてのテストに成功すると、最後に `OK` が表示されます。

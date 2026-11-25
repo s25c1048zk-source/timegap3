@@ -19,15 +19,13 @@ class CommandTests(unittest.TestCase):
     def assert_command(self, data, output="", error="", status=0, args=()):
         result = subprocess.run(
             [sys.executable, "-X", "utf8", str(COMMAND), *args],
-            input=data,
+            input=data.encode("utf-8"),
             capture_output=True,
-            encoding="utf-8",
             check=False,
         )
         self.assertEqual(result.returncode, status)
-        self.assertEqual(result.stdout, output)
-        self.assertEqual(result.stderr, error)
-
+        self.assertEqual(result.stdout.decode("utf-8").replace("\r\n", "\n"), output)
+        self.assertEqual(result.stderr.decode("utf-8").replace("\r\n", "\n"), error)
     def test_consecutive_intervals(self):
         self.assert_command(
             "12:00:00\n12:00:03\n12:00:10\n12:01:00\n",
@@ -74,3 +72,17 @@ class CommandTests(unittest.TestCase):
                     status=1,
                     args=args,
                 )
+
+    def test_missing_final_newline(self):
+        self.assert_command("01:59:59\n02:00:00", "1\n")
+
+    def test_crlf_input(self):
+        self.assert_command("00:00:00\r\n23:59:59\r\n", "86399\n")
+
+    def test_valid_output_before_error(self):
+        self.assert_command(
+            "00:00:00\n00:01:00\nwrong\n00:02:00\n",
+            output="60\n",
+            error="3行目: 時刻はHH:MM:SS形式で入力してください\n",
+            status=1,
+        )

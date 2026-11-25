@@ -54,3 +54,14 @@ class CommandTests(unittest.TestCase):
                     error="2行目: 時刻の範囲が正しくありません\n",
                     status=1,
                 )
+    def test_backwards_and_midnight(self):
+        for data in ("12:20:00\n12:19:59", "23:59:59\n00:00:00"):
+            with self.subTest(data=data):
+                self.assert_command(
+                    data,
+                    error="2行目: 時刻が逆戻りしています\n",
+                    status=1,
+                )
+
+    def test_equal_times(self):
+        self.assert_command("10:00:00\n10:00:00\n", "0\n")

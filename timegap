@@ -26,9 +26,11 @@ def main():
             return 1
 
         if previous is not None:
+            if current < previous:
+                print(f"{number}行目: 時刻が逆戻りしています", file=sys.stderr)
+                return 1
             print(current - previous)
         previous = current
-
     return 0
 
 

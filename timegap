@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
-
+import sys
 def seconds_since_midnight(clock):
     hours, minutes, seconds = (int(field) for field in clock.split(":"))
     return (hours * 60 + minutes) * 60 + seconds
+def main():
+    previous = None
+    for line in sys.stdin:
+        current = seconds_since_midnight(line.rstrip("\r\n"))
+        if previous is not None:
+            print(current - previous)
+        previous = current
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

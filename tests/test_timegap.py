@@ -65,3 +65,12 @@ class CommandTests(unittest.TestCase):
 
     def test_equal_times(self):
         self.assert_command("10:00:00\n10:00:00\n", "0\n")
+    def test_arguments(self):
+        for args in (("times.txt",), ("--help",), ("a", "b")):
+            with self.subTest(args=args):
+                self.assert_command(
+                    "bad input",
+                    error="使い方: timegap < times.txt\n",
+                    status=1,
+                    args=args,
+                )

@@ -16,6 +16,10 @@ def seconds_since_midnight(clock):
 
 
 def main():
+    if len(sys.argv) > 1:
+        print("使い方: timegap < times.txt", file=sys.stderr)
+        return 1
+
     previous = None
 
     for number, line in enumerate(sys.stdin, 1):

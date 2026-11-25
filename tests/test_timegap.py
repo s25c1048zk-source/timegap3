@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2026 Shoma Sato
 # SPDX-License-Identifier: BSD-3-Clause
 import runpy
 import subprocess

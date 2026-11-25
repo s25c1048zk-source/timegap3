@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2026 Shoma Sato
 # SPDX-License-Identifier: BSD-3-Clause
 set -eu
 cd "$(dirname "$0")"

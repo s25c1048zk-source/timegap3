@@ -25,6 +25,7 @@ $ ./timegap
 Ctrl + D を押すと入力が終了する
 
 時刻を1行ずつ書いたファイルからも読み込めます。
+timegap3 フォルダで nano times.txt を実行します。開いた画面に 11:00:00、`11:20:00`、`11:40:00` を1行に1つずつ入力します。最後に Ctrl + O を押し、`Enter` で保存してから Ctrl + X で閉じます。
 
 ```bash
 $ ./timegap < times.txt

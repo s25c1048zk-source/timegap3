@@ -1,4 +1,12 @@
 # timegap3
+
+## 導入方法
+
+```bash
+$ git clone https://github.com/s25c1048zk-source/timegap3.git
+$ cd timegap3
+```
+
 ## 使い方
 
 `timegap` は、同じ日に記録した時刻を1行ずつ読み、直前の時刻から何秒経過したかを出力します。Python 3とBashが使える環境で、リポジトリのフォルダに移動して実行します。

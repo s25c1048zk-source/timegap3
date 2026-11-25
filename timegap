@@ -10,6 +10,8 @@ def seconds_since_midnight(clock):
         raise ValueError("時刻はHH:MM:SS形式で入力してください")
 
     hours, minutes, seconds = (int(field) for field in clock.split(":"))
+    if hours >= 24 or minutes >= 60 or seconds >= 60:
+        raise ValueError("時刻の範囲が正しくありません")
     return (hours * 60 + minutes) * 60 + seconds
 
 

@@ -46,3 +46,11 @@ class CommandTests(unittest.TestCase):
                     error="1行目: 時刻はHH:MM:SS形式で入力してください\n",
                     status=1,
                 )
+    def test_out_of_range(self):
+        for clock in ("24:00:00", "00:60:00", "00:00:60"):
+            with self.subTest(clock=clock):
+                self.assert_command(
+                    "00:00:00\n" + clock,
+                    error="2行目: 時刻の範囲が正しくありません\n",
+                    status=1,
+                )

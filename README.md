@@ -43,5 +43,5 @@ bash test_timegap.bash
 
 ## ライセンス
 
-[BSD 3-Clause License](LICENSE)
-
+- `timegap` は3条項BSDライセンスで公開しています。
+- © 2026 Shoma Sato

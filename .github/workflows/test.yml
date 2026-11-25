@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: BSD-3-Clause
+name: test
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run tests
+        run: bash test_timegap.bash
+
+      - name: Check timegap command
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '12:00:00\n12:00:03\n' | ./timegap | diff -u <(printf '3\n') -
